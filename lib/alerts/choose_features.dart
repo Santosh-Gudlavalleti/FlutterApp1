@@ -2,6 +2,7 @@ import 'package:acm1/listings/menu_insert.dart';
 import 'package:acm1/apis/menu_services.dart';
 import 'package:acm1/views/gridsview.dart';
 import 'package:flutter/material.dart';
+//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_it/get_it.dart';
 import 'package:share/share.dart';
@@ -21,6 +22,20 @@ class ChooseFeature extends StatefulWidget {
 class _ChooseFeatureState extends State<ChooseFeature> {
   int _counter = 1;
   String _featureA = "Normal";
+
+  /*void _scheduleNotification() async {
+    DateTime scheduleNotificationDateTime = DateTime.now().add(Duration(seconds: 10));
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        "channelId", "channelName", "channelDescription", icon: 'app_icon');
+    var iosPlatformChannelSpecifics = IOSNotificationDetails(
+      presentAlert: true, presentSound: true, presentBadge: true,
+    );
+
+    var platformChannelSpecifics = NotificationDetails(
+      android: androidPlatformChannelSpecifics,
+      iOS: iosPlatformChannelSpecifics);
+
+  }*/
 
   void _incrementCouter() {
     setState(() {
@@ -164,7 +179,7 @@ class _ChooseFeatureState extends State<ChooseFeature> {
                       menuportions: _counter,
                       menufeat: _currentSliderValueA,
                       menuTime:
-                          DateTime.now().millisecondsSinceEpoch + 1000 * 30);
+                          DateTime.now().millisecondsSinceEpoch + 1000 * 90);
 
                   final result = await menuService.createOrder(notes);
                   final title = 'Done';
@@ -180,6 +195,7 @@ class _ChooseFeatureState extends State<ChooseFeature> {
                             actions: <Widget>[
                               FlatButton(
                                   onPressed: () {
+                                    //_scheduleNotification();
                                     Navigator.of(context).pushAndRemoveUntil(
                                         MaterialPageRoute(
                                             builder: (context) => GridsView()),
@@ -227,7 +243,7 @@ class _ChooseFeatureState extends State<ChooseFeature> {
 
   void share(BuildContext context) {
     final String msg =
-        "The Dish *${widget.menuTitle}*, from ACM is really good, you must try it.\n Try it Now : ${widget.img}";
+        "The Dish ${widget.menuTitle}, from ACM is really good, you must try it.\n Try it Now : ${widget.img}";
     Share.share(msg);
   }
 }
