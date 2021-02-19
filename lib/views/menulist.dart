@@ -32,12 +32,12 @@ class _MenuListState extends State<MenuList> {
   int a = 0;
 
   List<String> images = [
-    'images/mixveg.png',
-    'images/palpan.png',
-    'images/dalmak.png',
     'images/tomsoup.png',
     'images/jeerice.png',
-    'images/ricekhe.png',
+    'images/dalmak.png',
+    'images/mixveg.png',
+    'images/palpan.png',
+    'images/ricekhe.png'
   ];
 
   @override

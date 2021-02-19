@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'package:acm1/alerts/api_response.dart';
-import 'package:acm1/listings/bin_update.dart';
-import 'package:acm1/listings/menu_insert.dart';
-import 'package:acm1/listings/bin_listing.dart';
-import 'package:acm1/listings/cooked_listing.dart';
-import 'package:acm1/listings/menu_listing.dart';
-import 'package:acm1/listings/cart_listing.dart';
 import 'package:http/http.dart' as http;
+import '../alerts/api_response.dart';
+import '../listings/bin_listing.dart';
+import '../listings/bin_update.dart';
+import '../listings/cart_listing.dart';
+import '../listings/cooked_listing.dart';
+import '../listings/menu_insert.dart';
+import '../listings/menu_listing.dart';
 
 class MenuService {
   static const API = 'https://acmg90.herokuapp.com/v1/graphql';
