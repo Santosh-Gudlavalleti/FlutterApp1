@@ -17,37 +17,15 @@ class _CartState extends State<Cart> {
 
   APIResponse<List<CartListing>> _apiResponse;
   bool _isLoading = false;
+  List<bool> _dialogOpened = [];
   int time = 0;
-  //int _counter;
-  //Timer _timer;
   List timeList = [];
 
   @override
   void initState() {
     _fetchCart();
-    //_startTimer();
     super.initState();
   }
-
-  /*void _startTimer() {
-    if(_timer != null){
-      _timer.cancel();
-    }
-    _counter = 5;
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if(_counter > 0){
-        setState(() {
-          _counter--;
-        });
-      }
-      else{
-        setState(() {
-          _timer.cancel();
-        });
-        showDialog(context: context, builder: (_) => RateShare());
-      }
-    });
-  }*/
 
   _fetchCart() async {
     setState(() {
@@ -58,6 +36,7 @@ class _CartState extends State<Cart> {
 
     for (int i = 0; i < _apiResponse.data.length; i++) {
       timeList.add(_apiResponse.data[i].endtime);
+      _dialogOpened.add(false);
     }
 
     setState(() {
@@ -88,7 +67,7 @@ class _CartState extends State<Cart> {
           }
 
           return ListView.separated(
-            separatorBuilder: (_, __) =>
+            separatorBuilder: (__, _) =>
                 Container(child: Divider(height: 0, color: Colors.blue)),
             itemBuilder: (_, index) {
               return ListTile(
@@ -98,18 +77,7 @@ class _CartState extends State<Cart> {
                   style: TextStyle(
                       color: Theme.of(context).primaryColor, fontSize: 20),
                 ),
-                subtitle:
-                    /*_counter>0? Text(
-                  "Portions : ${_apiResponse.data[index].portions} , Feature A : ${_apiResponse.data[index].feature}%"
-                      "\nTime Remaining : ${(_counter/60).ceil()} minutes",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor, fontSize: 15),
-                  // onTap: () {
-                  // Navigator.of(context)
-                  //   .push(MaterialPageRoute(builder: (_) => ChooseAction()));
-                  // },
-                ) :*/
-                    Column(
+                subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -118,15 +86,21 @@ class _CartState extends State<Cart> {
                           color: Theme.of(context).primaryColor, fontSize: 15),
                     ),
                     CountdownTimer(
-                      endTime:
-                          DateTime.now().millisecondsSinceEpoch + 1000 * 45,
+                      endTime: timeList[index],
                       onEnd: () {
-                        showDialog(
-                            context: context,
-                            builder: (_) => RateShare(
-                                  menuTitle:
-                                      _apiResponse.data[index].orderTitle,
-                                ));
+                        if (!_dialogOpened[index]) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            setState(() {
+                              _dialogOpened[index] = true;
+                            });
+                            showDialog(
+                                context: context,
+                                builder: (_) => RateShare(
+                                      menuTitle:
+                                          _apiResponse.data[index].orderTitle,
+                                    ));
+                          });
+                        }
                       },
                       widgetBuilder: (_, time) {
                         if (time == null) {

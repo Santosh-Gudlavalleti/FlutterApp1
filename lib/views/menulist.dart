@@ -61,13 +61,15 @@ class _MenuListState extends State<MenuList> {
       slides.add(
         new Slide(
           title: _menuResponse.data[i].menuTitle,
+          styleTitle: TextStyle(color: Colors.black, fontSize: 21),
           description: "Good, Healthy, Tasty \n Time : 10 min",
+          styleDescription: TextStyle(color: Colors.black, fontSize: 18),
           pathImage: images[i],
           marginDescription:
               EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 70.0),
           marginTitle:
               EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 70.0),
-          backgroundColor: Color(0xff29b6f6),
+          backgroundColor: Colors.white,
         ),
       );
     }
