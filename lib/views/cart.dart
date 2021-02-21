@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:get_it/get_it.dart';
 
+import 'dart:async';
+
 class Cart extends StatefulWidget {
   @override
   _CartState createState() => _CartState();
@@ -17,6 +19,7 @@ class _CartState extends State<Cart> {
 
   APIResponse<List<CartListing>> _apiResponse;
   bool _isLoading = false;
+  Timer timer;
   List<bool> _dialogOpened = [];
   int time = 0;
   List timeList = [];
@@ -25,6 +28,7 @@ class _CartState extends State<Cart> {
   void initState() {
     _fetchCart();
     super.initState();
+    timer = Timer.periodic(Duration(seconds: 15), (Timer t) => _fetchCart());
   }
 
   _fetchCart() async {
@@ -42,6 +46,12 @@ class _CartState extends State<Cart> {
     setState(() {
       _isLoading = false;
     });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   @override
