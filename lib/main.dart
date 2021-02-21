@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:acm1/views/gridsview.dart';
 import 'package:get_it/get_it.dart';
 
+import 'apis/menu_services.dart';
+import 'login/LOGIN.dart';
+
 void setupLocator() {
   GetIt.instance.registerLazySingleton(() => MenuService());
 }

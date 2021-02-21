@@ -37,6 +37,8 @@ dependencies:
   share: ^0.6.2+3
   flutter_html: ^0.11.0
   flutter_countdown_timer: ^3.0.0
+  starflut: ^1.0.0
+  keyboard_actions: ^3.3.1+1
   
   #flutter_share_file: ^1.2.1+6
   #advanced_share: ^0.1.0
@@ -62,6 +64,7 @@ dev_dependencies:
 flutter:
   assets:
     - images/
+    - starfiles/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
