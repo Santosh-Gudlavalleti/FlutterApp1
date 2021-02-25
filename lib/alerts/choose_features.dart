@@ -13,7 +13,19 @@ class ChooseFeature extends StatefulWidget {
   final String menuTitle;
   final String img;
   final String imgloc;
-  ChooseFeature({this.menuID, this.menuTitle, this.img, this.imgloc});
+  final int mot1;
+  final int mot2;
+  final int mot3;
+  final int mot4;
+  ChooseFeature(
+      {this.menuID,
+      this.menuTitle,
+      this.img,
+      this.imgloc,
+      this.mot1,
+      this.mot2,
+      this.mot3,
+      this.mot4});
 
   @override
   _ChooseFeatureState createState() => _ChooseFeatureState();
@@ -174,12 +186,16 @@ class _ChooseFeatureState extends State<ChooseFeature> {
               onPressed: () async {
                 if (_counter > 0) {
                   final notes = MenuInsert(
-                      menuTitle: widget.menuTitle,
-                      menuid: widget.menuID,
-                      menuportions: _counter,
-                      menufeat: _currentSliderValueA,
-                      menuTime:
-                          DateTime.now().millisecondsSinceEpoch + 1000 * 90);
+                    menuTitle: widget.menuTitle,
+                    menuid: widget.menuID,
+                    menuportions: _counter,
+                    menufeat: _currentSliderValueA,
+                    menuTime: DateTime.now().millisecondsSinceEpoch + 1000 * 90,
+                    mot1: widget.mot1,
+                    mot2: widget.mot2,
+                    mot3: widget.mot3,
+                    mot4: widget.mot4,
+                  );
 
                   final result = await menuService.createOrder(notes);
                   final title = 'Done';

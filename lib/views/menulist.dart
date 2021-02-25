@@ -91,6 +91,10 @@ class _MenuListState extends State<MenuList> {
               menuTitle: _menuResponse.data[widget.ind].menuTitle,
               img: widget.img,
               imgloc: images[widget.ind],
+              mot1: _menuResponse.data[widget.ind].mot1,
+              mot2: _menuResponse.data[widget.ind].mot2,
+              mot3: _menuResponse.data[widget.ind].mot3,
+              mot4: _menuResponse.data[widget.ind].mot4,
             ));
   }
 

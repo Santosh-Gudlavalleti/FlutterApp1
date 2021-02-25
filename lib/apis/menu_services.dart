@@ -21,7 +21,7 @@ class MenuService {
       'x-hasura-admin-secret': 'acmcfi'
     };
     var sun =
-        '{"query":"query MyQuery {\n  items {\n    name\n    id\n    image\n    index\n    rating\n  }\n}\n","variables":null,"operationName":"MyQuery"}';
+        '{"query":"query MyQuery {\n  items {\n    name\n    id\n    image\n    index\n    rating\n    Motor1\n    Motor2\n    Motor3\n    Motor4\n  }\n}\n","variables":null,"operationName":"MyQuery"}';
 
     try {
       final response = await http.post(API, headers: header, body: sun);
@@ -71,7 +71,7 @@ class MenuService {
 
   Future<APIResponse<List<MenuForListing>>> getMenuList() {
     var data =
-        '{"query":"query MyQuery {\n  items {\n    name\n    id\n    image\n    index\n    imagelocal\n    rating\n  }\n}\n","variables":null,"operationName":"MyQuery"}';
+        '{"query":"query MyQuery {\n  items {\n    name\n    id\n    image\n    index\n    imagelocal\n    rating\n    Motor1\n    Motor2\n    Motor3\n    Motor4\n  }\n}\n","variables":null,"operationName":"MyQuery"}';
     return http.post(API, headers: headers, body: data).then((res) {
       if (res.statusCode == 200) {
         final jsonDatas = json.decode(res.body);
@@ -89,7 +89,7 @@ class MenuService {
 
   Future<APIResponse<List<CartListing>>> getCartList() {
     var data =
-        '{"query":"query MyQuery {\n  orders {\n    item_name\n    id\n    is_cooked\n   portions\n   feature\n    EndTime\n  }\n}\n","variables":null,"operationName":"MyQuery"}';
+        '{"query":"query MyQuery {\n  orders {\n    item_name\n    id\n    is_cooked\n   portions\n   feature\n    EndTime\n    Motor1\n    Motor2\n    Motor3\n    Motor4\n  }\n}\n","variables":null,"operationName":"MyQuery"}';
     return http.post(API, headers: headers, body: data).then((ress) {
       if (ress.statusCode == 200) {
         final jsonDat = json.decode(ress.body);
@@ -129,7 +129,7 @@ class MenuService {
 
   Future<APIResponse<bool>> createOrder(MenuInsert item) {
     var req =
-        '{"query":"mutation MyMutation {\\n  insert_orders(objects: {item_id: \\"${item.menuid}\\" , item_name: \\"${item.menuTitle}\\", machine_id: \\"7da727c4-87d4-428e-b72e-07505195e9c1\\", user_id: \\"7da727c4-87d4-428e-b72e-07505195e9c1\\", is_cooked: \\"false\\", portions: \\"${item.menuportions}\\", feature: \\"${item.menufeat}\\", EndTime: \\"${item.menuTime}\\"}) {\\n    affected_rows\\n  }\\n}\\n","variables":null,"operationName":"MyMutation"}';
+        '{"query":"mutation MyMutation {\\n  insert_orders(objects: {item_id: \\"${item.menuid}\\" , item_name: \\"${item.menuTitle}\\", Motor1: \\"${item.mot1}\\", Motor2: \\"${item.mot2}\\", Motor3: \\"${item.mot3}\\", Motor4: \\"${item.mot4}\\", machine_id: \\"7da727c4-87d4-428e-b72e-07505195e9c1\\", user_id: \\"7da727c4-87d4-428e-b72e-07505195e9c1\\", is_cooked: \\"false\\", portions: \\"${item.menuportions}\\", feature: \\"${item.menufeat}\\", EndTime: \\"${item.menuTime}\\"}) {\\n    affected_rows\\n  }\\n}\\n","variables":null,"operationName":"MyMutation"}';
     return http.post(API, headers: headers, body: req).then((val) {
       if (val.statusCode == 200) {
         return APIResponse<bool>(data: true);

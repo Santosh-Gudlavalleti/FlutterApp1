@@ -80,6 +80,7 @@ class _CartState extends State<Cart> {
             separatorBuilder: (__, _) =>
                 Container(child: Divider(height: 0, color: Colors.blue)),
             itemBuilder: (_, index) {
+              print(_apiResponse.data[index].mot1);
               return ListTile(
                 title: Text(
                   _apiResponse.data[index].orderTitle //
