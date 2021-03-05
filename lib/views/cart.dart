@@ -81,6 +81,10 @@ class _CartState extends State<Cart> {
                 Container(child: Divider(height: 0, color: Colors.blue)),
             itemBuilder: (_, index) {
               print(_apiResponse.data[index].mot1);
+              print(_apiResponse.data[index].mot2);
+              print(_apiResponse.data[index].mot3);
+              print(_apiResponse.data[index].mot4);
+
               return ListTile(
                 title: Text(
                   _apiResponse.data[index].orderTitle //
